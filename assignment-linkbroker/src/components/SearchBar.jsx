@@ -1,23 +1,8 @@
-import axios from "axios";
-import { useState } from "react"
 
 
-const SearchBar = () => {
+const SearchBar = ({searchTerm,setSearchTerm,handleSearch}) => {
 
-    const [searchTerm, setSearchTerm] = useState("");
-
-    const handleSearch =async () => {
-            try {
-                const apiKey ="41779675-a1dbd5269481e09d3d22e0802";
-                const apiUrl =`https://pixabay.com/api/?key=${apiKey}&q=${searchTerm}&image_type=photo&pretty=true`;
-
-                const response = await axios.get(apiUrl);
-
-                console.log("Pixabay Data",response.data)
-            } catch (error) {
-                console.error("Error while fetching data from API",error)
-            }
-    }
+   
   return (
     <div className="flex gap-2 justify-between items-center w-9/12 md:w-7/12 lg:w-5/12 mx-auto  text-white bg-white/10 backdrop-blur-sm px-5 py-1 md:py-2 lg:py-2 mt-10 md:mt-20 lg:mt-7 border-2 rounded-lg">
 <svg width={22} height={23} viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,11 +17,7 @@ const SearchBar = () => {
       placeholder="Search"
       value={searchTerm}
       onChange={(e)=>setSearchTerm(e.target.value)}
-      onKeyDown={(e) =>{
-        if(e.key === "Enter"){
-            handleSearch();
-        }
-      }}
+     
       className="w-5/6 bg-transparent focus:outline-none"/>
       <button 
       onClick={handleSearch}
